@@ -1,0 +1,12 @@
+.header {
+  width: 100%;
+  height: 50px;
+  background: gainsboro;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  margin: 0px;
+}
+
+#appName {
+  margin-left: 15px;
+}

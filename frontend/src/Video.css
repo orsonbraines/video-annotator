@@ -1,0 +1,25 @@
+#videoInfo {
+  float: left;
+  width: 400px;
+  height: 150px;
+}
+
+#img {
+  float: left;
+  width: 210px;
+  height: 150px;
+  border: 1px solid black;
+}
+
+h2 {
+  margin-left: 20px;
+  display: inline;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+
+#description {
+  margin-left: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+}

@@ -1,0 +1,27 @@
+.topContainer {
+  float: left;
+  margin: 20px 0px;
+  margin-left: 95px;
+  width: 90%;
+  height: 50px;
+}
+
+#videosContainer {
+  float: left;
+  margin: 0px;
+  margin-left: 95px;
+  width: 90%;
+
+}
+
+#title {
+  margin: 10px;
+  margin-left: 20px;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+
+hr {
+  width: 90%;
+  margin: 0px;
+}
