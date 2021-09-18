@@ -17,7 +17,6 @@ load_dotenv()
 import backend.db as db
 
 app = Flask(__name__)
-app.debug = True
 CORS(app)
 
 # init db
@@ -60,6 +59,14 @@ def videos():
         # Return success response
         res = app.response_class(status=201)
         return res
+
+@app.route("/videos/<video_id>")
+def video(video_id):
+    vid = db.get_video(video_id)
+    if vid == None:
+        return app.make_response(({'msg': f'video {video_id} not found'}, 404))
+
+    return jsonify(vid)
 
 @app.route("/videos/<video_id>/transcripts", methods=['GET','POST'])
 def transcripts(video_id):
