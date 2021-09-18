@@ -19,7 +19,6 @@ load_dotenv()
 import backend.db as db
 
 app = Flask(__name__)
-app.debug = True
 CORS(app)
 
 # init db
@@ -75,12 +74,20 @@ def videos():
         transcript = getTranscript(cloud_audio_path)
         print(transcript)
         # Adding video to db
-        # db.create_video(video)
+        db.create_video(video)
         # Deleting temporary video folder from local directory
         shutil.rmtree(temp_local_folder)
         # Return success response
         res = app.response_class(status=201)
         return res
+
+@app.route("/videos/<video_id>")
+def video(video_id):
+    vid = db.get_video(video_id)
+    if vid == None:
+        return app.make_response(({'msg': f'video {video_id} not found'}, 404))
+
+    return jsonify(vid)
 
 @app.route("/videos/<video_id>/transcripts", methods=['GET'])
 def transcripts(video_id):

@@ -1,10 +1,19 @@
 import React from 'react';
+import { Player, BigPlayButton } from 'video-react';
+import "../node_modules/video-react/dist/video-react.css";
 import './VideoBox.css';
 
-export default function VideoBox() {
+
+const VideoBox = (props) => {
   return (
-    <div className='videoContainer'>
-      This is the video div.
+    <div id='videoContainer'>
+      {props.video && 
+        <Player>
+          <source src={props.video.video_url}/>
+          <BigPlayButton position="center" />
+        </Player>}
     </div>
   );
 }
+
+export default VideoBox;

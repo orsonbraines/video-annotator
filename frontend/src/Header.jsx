@@ -3,7 +3,7 @@ import './Header.css';
 
 export default function Header() {
   return (
-    <div className='header'>
+    <div id='header'>
       <h1 id='appName'>App Name</h1>
     </div>
   );

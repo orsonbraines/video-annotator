@@ -9,8 +9,8 @@ def init_conn(dsn):
 
 def create_video(video):
     with conn.cursor() as cur:
-        cur.execute('INSERT INTO video(video_url, video_name, video_length) VALUES (%s,%s,%s)',
-            (video['url'], video['name'], video['length']))
+        cur.execute('INSERT INTO video(video_url, video_name, video_length, thumbnail_url) VALUES (%s,%s,%s)',
+            (video['video_url'], video['name'], video['length'], video['thumbnail_url']))
 
 def create_annotation(annotation):
     with conn.cursor() as cur:
@@ -24,23 +24,30 @@ def create_transcript(transcript):
 
 def get_videos():
     with conn.cursor() as cur:
-        cur.execute('SELECT id, video_url, video_name, video_length FROM video')
+        cur.execute('SELECT id, video_url, video_name, video_length, thumbnail_url FROM video')
         print(f'DEBUG: {cur.rowcount} videos fetched')
-        return [{'id': r[0], 'url': r[1], 'name': r[2], 'length': r[3]} for r in cur.fetchall()]
+        return [{'id': r[0], 'video_url': r[1], 'name': r[2], 'length': r[3], 'thumbnail_url': r[4]} for r in cur.fetchall()]
+
+def get_video(id):
+    with conn.cursor() as cur:
+        cur.execute('SELECT id, video_url, video_name, video_length, thumbnail_url FROM video WHERE id=%s', (id,))
+        if cur.rowcount == 1:
+            r = cur.fetchone()
+            return {'id': str(r[0]), 'video_url': r[1], 'name': r[2], 'length': r[3], 'thumbnail_url': r[4]}
 
 def get_annotations(video_id):
     with conn.cursor() as cur:
         cur.execute(""" SELECT id, video_id, ts, msg FROM annotation
                         WHERE video_id = %s""", (video_id,))
         print(f'DEBUG: {cur.rowcount} annotations fetched for video {video_id}')
-        return [{'id': r[0], 'video_id': r[1], 'ts': r[2], 'msg': r[3]} for r in cur.fetchall()]
+        return [{'id': str(r[0]), 'video_id': r[1], 'ts': r[2], 'msg': r[3]} for r in cur.fetchall()]
 
 def get_transcripts(video_id):
     with conn.cursor() as cur:
         cur.execute(""" SELECT id, video_id, ts, txt FROM transcript
                         WHERE video_id = %s""", (video_id,))
         print(f'DEBUG: {cur.rowcount} transcripts fetched for video {video_id}')
-        return [{'id': r[0], 'video_id': r[1], 'ts': r[2], 'txt': r[3]} for r in cur.fetchall()]
+        return [{'id': str(r[0]), 'video_id': r[1], 'ts': r[2], 'txt': r[3]} for r in cur.fetchall()]
 
 def edit_annotation(id, new_msg):
     with conn.cursor() as cur:
