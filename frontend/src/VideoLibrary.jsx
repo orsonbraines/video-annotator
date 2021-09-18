@@ -1,22 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { get_videos, upload_video } from './jsonapi';
+import { get_videos, upload_video, get_video  } from './jsonapi';
 import './VideoLibrary.css';
 import './Video.css';
 import { Link } from 'react-router-dom';
 
-/*function FileUpload() {
-  const [file, setFile] = useState("");
-
-  function handleUpload(event) {
-    setFile(event.target.files[0]);
-  }
-
-  return (
-    <div>
-      <input type='file' />
-    </div>
-  );
-}*/
 
 export default function VideoLibrary() {
   const [videos, setVideos] = useState([]);
@@ -30,11 +17,9 @@ export default function VideoLibrary() {
     });
   }, []);
 
-  
-
   //maps videos to dom components
   let videoTiles = videos.map(video => 
-    (<Video key={video.id} id={video.id} name={video.name} vidlen={video.length}/>)
+    (<Video key={video.id} id={video.id} name={video.name} vidlen={video.length} thumbnail={video.thumbnail_url}/>)
   );
 
   function FileUpload(event) {
@@ -48,11 +33,11 @@ export default function VideoLibrary() {
 
 
   return (
-    <div id='mainContainer' >
+    <div className='mainContainer'>
         <div id='topContainer'>
           <h1 id='title'>Video Library</h1>
           <label htmlFor="addBtn" className="file-upload">
-            <span><ion-icon name="add-outline"></ion-icon></span>
+            <span><ion-icon name="add-outline" /></span>
             {uploading ? 'Uploading' : 'Upload'} 
           </label>
           <input type='file' id='addBtn' accept="video/*" onChange={FileUpload} />
@@ -69,7 +54,7 @@ function Video(props) {
   return (
     <Link to = {`/videoPlayer/${props.id}`}>
       <div className='videoTile'>
-        <div className='img'></div>
+        <div className='thumbnail'><img src={props.thumbnail} alt="" /></div>
         <div className='videoInfo'>
           <h2>{props.name}</h2>
           <p className='description'>{props.vidlen}</p>
