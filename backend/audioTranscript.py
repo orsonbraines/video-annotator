@@ -38,7 +38,6 @@ def getTranscript(filename):
     data = {}
     for result in result.results:
         alternative = result.alternatives[0]
-        # print("Transcript: {}".format(alternative.transcript))
         # print("Confidence: {}".format(alternative.confidence))
 
         for word_info in alternative.words:
@@ -47,9 +46,10 @@ def getTranscript(filename):
             data[f'{start_time.total_seconds()}'] = (list(filter(None, "{}".format(alternative.transcript).split("."))))
             break
         text += (alternative.transcript + "\n")
-    with open('text.txt', 'w') as output:
-        output.write(text)
-
+    # save transcript to file
+    # with open('text.txt', 'w') as output:
+    #     output.write(text)
+    
     return data
 
 
