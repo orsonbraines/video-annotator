@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 from backend.GoogleCloudStorageConnector import GoogleCloudStorageConnector
 from werkzeug.utils import secure_filename
 import uuid
-from backend.utils import getVideoLength, downloadVideoThumbnail, getAudioFromVideo
+from backend.utils import getVideoLength, downloadVideoThumbnail, getAudioFromVideo, transformTranscriptsForDb
 import math
-import shutil
 from backend.audioTranscript import getTranscript
+import tempfile
 
 
 load_dotenv()
@@ -44,17 +44,16 @@ def videos():
         filename = secure_filename(file.filename)
         video_uuid = str(uuid.uuid4())
         # Creating temporary local folder to store video and thumbnail files
-        temp_local_folder = os.path.join(app.root_path, 'static', video_uuid)
-        os.makedirs(temp_local_folder)
+        temp_local_folder = tempfile.TemporaryDirectory()
         # Saving the video file temporarily to static/<video_uuid> folder
-        local_video_filepath = os.path.join(temp_local_folder, filename)
+        local_video_filepath = os.path.join(temp_local_folder.name, filename)
         file.save(local_video_filepath)
         video_length = math.floor(getVideoLength(local_video_filepath) * 1000)
         # Getting audio from video
-        local_audio_filepath = os.path.join(temp_local_folder, 'audio.wav')
+        local_audio_filepath = os.path.join(temp_local_folder.name, 'audio.wav')
         getAudioFromVideo(local_video_filepath, local_audio_filepath)
         # Getting video thumbnail
-        local_thumbnail_filepath = os.path.join(temp_local_folder, 'thumbnail.jpg')
+        local_thumbnail_filepath = os.path.join(temp_local_folder.name, 'thumbnail.jpg')
         downloadVideoThumbnail(local_video_filepath, local_thumbnail_filepath)
         
         # Uploading video file to Google Cloud Storage
@@ -74,9 +73,11 @@ def videos():
         transcript = getTranscript(cloud_audio_path)
         print(transcript)
         # Adding video to db
-        db.create_video(video)
+        video_id = db.create_video(video)
+        # Add transcripts for video to db
+        db.create_transcripts(transformTranscriptsForDb(transcript, video_id))
         # Deleting temporary video folder from local directory
-        shutil.rmtree(temp_local_folder)
+        temp_local_folder.cleanup()
         # Return success response
         res = app.response_class(status=201)
         return res
