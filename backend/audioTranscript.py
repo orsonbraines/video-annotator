@@ -43,7 +43,7 @@ def getTranscript(filename):
         for word_info in alternative.words:
             start_time = word_info.start_time
 
-            data[f'{start_time.total_seconds()}'] = (list(filter(None, "{}".format(alternative.transcript).split("."))))
+            data[f'{start_time.total_seconds()}'] = (alternative.transcript + ". ")
             break
         text += (alternative.transcript + "\n")
     # save transcript to file
