@@ -1,18 +1,16 @@
-#videoInfo {
-  float: left;
+.videoInfo {
+  margin-left: 20px;
   width: 400px;
   height: 150px;
 }
 
-#img {
-  float: left;
+.img {
   width: 210px;
   height: 150px;
   border: 1px solid black;
 }
 
 h2 {
-  margin-left: 20px;
   display: inline;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;

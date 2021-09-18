@@ -1,11 +1,3 @@
-#topContainer {
-  float: left;
-  margin: 20px 0px;
-  margin-left: 95px;
-  width: 80%;
-  height: 50px;
-}
-
 #addBtn {
   float: right;
   margin-top: 5px;
@@ -22,8 +14,20 @@
   cursor: pointer;
 }
 
+.topContainer {
+  margin: 20px 0px;
+  margin-left: 15px;
+  width: 90%;
+  height: 50px;
+}
+
+.videoTile {
+    display: grid;
+    grid-auto-flow: column dense;
+    width: fit-content;
+}
+
 #videosContainer {
-  float: left;
   margin: 0px;
   margin-left: 95px;
   width: 90%;

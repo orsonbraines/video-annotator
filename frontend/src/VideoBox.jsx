@@ -7,7 +7,7 @@ const VideoBox = () => {
   const {id} = useParams();
   return (
     <div id='videoContainer'>
-      Video number: {id}. This is the video div.
+      Video id: {id}. This is the video div.
     </div>
   );
 }

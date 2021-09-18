@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { get_videos } from './jsonapi';
 import './VideoLibrary.css';
 import './Video.css';
 import { Link } from 'react-router-dom';
 
 export default function VideoLibrary() {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    get_videos().then(data => {
+      setVideos(data);
+    });
+  }, []);
+
+  let videoTiles = videos.map(video => 
+    (<Video key={video.id} id={video.id} name={video.name} vidlen={video.length}/>)
+  );
+
   return (
     <div>
       <div id='topContainer'>
@@ -15,23 +28,23 @@ export default function VideoLibrary() {
         <hr/>
       </div>
       <div id='videosContainer'>
-        <Video />
+        {videoTiles}
       </div>
     </div>
   );
 }
 
-function Video() {
-  let id = 1;
+
+function Video(props) {
   return (
-    <div id='videoDiv'>
-      <Link to = {`/videoPlayer/${id}`}>
-        <div id='img'></div>
-        <div id='videoInfo'>
-          <h2 id='name'>Video Name</h2>
-          <p id='description'>This is where the video description will go.</p>
+    <Link to = {`/videoPlayer/${props.id}`}>
+      <div className='videoTile'>
+        <div class='img'></div>
+        <div class='videoInfo'>
+          <h2>{props.name}</h2>
+          <p class='description'>{props.vidlen}</p>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
