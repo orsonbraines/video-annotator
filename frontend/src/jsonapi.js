@@ -1,4 +1,4 @@
-let base_url = 'http://localhost:5000'
+let base_url = 'http://localhost:8000'
 
 export async function get_videos() {
   let res = await fetch(`${base_url}/videos`);

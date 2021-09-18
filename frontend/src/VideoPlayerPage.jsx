@@ -25,7 +25,7 @@ const VideoPlayer = () => {
       <Header />
       <div id='upper'>
         <VideoBox video={video} seekTime={seekTime} setSeekTime={setSeekTime}/>
-        <VideoText />
+        <VideoText transcripts={video ? video.transcripts : []} setSeekTime={setSeekTime}/>
       </div>
       <div id='lower'>
         <Notes annotations={video ? video.annotations : []} setSeekTime={setSeekTime}/>
