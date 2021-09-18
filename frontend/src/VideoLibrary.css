@@ -1,13 +1,14 @@
 .topContainer {
   margin: 20px 0px;
-  margin-left: 95px;
+  margin-left: 15px;
   width: 90%;
   height: 50px;
 }
 
 .videoTile {
     display: grid;
-    grid-template-rows: 1;
+    grid-auto-flow: column dense;
+    width: fit-content;
 }
 
 #videosContainer {

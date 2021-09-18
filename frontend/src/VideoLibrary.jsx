@@ -13,7 +13,7 @@ export default function VideoLibrary() {
   }, []);
 
   let videoTiles = videos.map(video => 
-    (<Video key={video.id} id={video.id} name={video.name} url={video.url}/>)
+    (<Video key={video.id} id={video.id} name={video.name} vidlen={video.length}/>)
   );
 
   return (
@@ -35,7 +35,7 @@ function Video(props) {
       <div class='img'></div>
       <div class='videoInfo'>
         <h2>{props.name}</h2>
-        <p class='description'>{props.url}</p>
+        <p class='description'>{props.vidlen}</p>
       </div>
     </div>
   );
