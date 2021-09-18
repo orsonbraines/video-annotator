@@ -1,13 +1,11 @@
 import React from 'react';
 import './VideoBox.css';
-import { useParams } from "react-router-dom";
 
 
-const VideoBox = () => {
-  const {id} = useParams();
+const VideoBox = (props) => {
   return (
     <div id='videoContainer'>
-      Video id: {id}. This is the video div.
+      {props.video && `Video id: ${props.video.id}. This is the video div.`}
     </div>
   );
 }

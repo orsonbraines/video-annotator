@@ -3,12 +3,12 @@ let base_url = 'http://localhost:5000'
 export async function get_videos() {
   let res = await fetch(`${base_url}/videos`);
   let data = await res.json();
-  let data2 = []
-  for (const o in data)
-    data2.push(o);
-  console.log(data.length);
-  console.log(data2.length);
-  console.log(typeof data);
-  console.log(typeof data2);
+  console.log(data);
+  return data
+}
+
+export async function get_video(video_id) {
+  let res = await fetch(`${base_url}/videos/${video_id}`);
+  let data = await res.json();
   return data
 }

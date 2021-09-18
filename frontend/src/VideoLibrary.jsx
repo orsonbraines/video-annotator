@@ -39,10 +39,10 @@ function Video(props) {
   return (
     <Link to = {`/videoPlayer/${props.id}`}>
       <div className='videoTile'>
-        <div class='img'></div>
-        <div class='videoInfo'>
+        <div className='img'></div>
+        <div className='videoInfo'>
           <h2>{props.name}</h2>
-          <p class='description'>{props.vidlen}</p>
+          <p className='description'>{props.vidlen}</p>
         </div>
       </div>
     </Link>
