@@ -2,23 +2,13 @@ import sox
 from pydub import AudioSegment
 from google.cloud import speech
 
-'''
-
-
-
-'''
-
 # convert from 2 channel to 1 channel. Replaces source file.
-
-
 def stereoToMono(fileName):
     audio = AudioSegment.from_wav(fileName)
     audio = audio.set_channels(1)
     audio.export(fileName, format="wav")
 
 # get the sample rate and channls
-
-
 def getAudioInfo(filename):
     data = {}
     data['sample_rate'] = sox.file_info.sample_rate(filename)
