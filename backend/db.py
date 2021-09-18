@@ -9,8 +9,8 @@ def init_conn(dsn):
 
 def create_video(video):
     with conn.cursor() as cur:
-        cur.execute('INSERT INTO video(video_url, video_name, video_length) VALUES (%s,%s,%s)',
-            (video['url'], video['name'], video['length']))
+        cur.execute('INSERT INTO video(video_url, video_name, video_length, thumbnail_url) VALUES (%s,%s,%s,%s)',
+            (video['video_url'], video['name'], video['length'], video['thumbnail_url']))
 
 def create_annotation(annotation):
     with conn.cursor() as cur:
@@ -24,16 +24,19 @@ def create_transcript(transcript):
 
 def get_videos():
     with conn.cursor() as cur:
-        cur.execute('SELECT id, video_url, video_name, video_length FROM video')
+        cur.execute('SELECT id, video_url, video_name, video_length, thumbnail_url FROM video')
         print(f'DEBUG: {cur.rowcount} videos fetched')
-        return [{'id': str(r[0]), 'url': r[1], 'name': r[2], 'length': r[3]} for r in cur.fetchall()]
+        return [{'id': str(r[0]), 'video_url': r[1], 'name': r[2], 'length': r[3], 'thumbnail_url': r[4]} for r in cur.fetchall()]
 
 def get_video(id):
     with conn.cursor() as cur:
-        cur.execute('SELECT id, video_url, video_name, video_length FROM video WHERE id=%s', (id,))
+        cur.execute('SELECT id, video_url, video_name, video_length, thumbnail_url FROM video WHERE id=%s', (id,))
         if cur.rowcount == 1:
             r = cur.fetchone()
-            return {'id': str(r[0]), 'url': r[1], 'name': r[2], 'length': r[3]}
+            vid = {'id': str(r[0]), 'video_url': r[1], 'name': r[2], 'length': r[3], 'thumbnail_url': r[4]}
+            vid['annotations'] = get_annotations(vid['id'])
+            vid['transcripts'] = get_transcripts(vid['id'])
+            return vid
 
 def get_annotations(video_id):
     with conn.cursor() as cur:

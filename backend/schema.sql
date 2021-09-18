@@ -2,7 +2,8 @@ CREATE TABLE video(
     id SERIAL PRIMARY KEY,
     video_url VARCHAR(1000) NOT NULL, 
     video_name VARCHAR(100) NOT NULL,
-    video_length INT
+    video_length INT,
+    thumbnail_url VARCHAR(1000)
 );
 
 CREATE TABLE annotation(

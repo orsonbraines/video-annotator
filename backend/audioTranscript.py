@@ -16,11 +16,11 @@ def getAudioInfo(filename):
     return data
 
 
-def getTranscript(filename):
+def getTranscript(filepath):
     client = speech.SpeechClient()
 
     # The name of the audio file to transcribe
-    gcs_uri = f"gs://video-annotator/{filename}.wav"
+    gcs_uri = f"gs://video-annotator/{filepath}"#.wav"
 
     audio = speech.RecognitionAudio(uri=gcs_uri)
     config = speech.RecognitionConfig(
@@ -53,7 +53,7 @@ def getTranscript(filename):
     return data
 
 
-print(getTranscript('SundarPichai'))
+#print(getTranscript('SundarPichai'))
 
 # https://www.bing.com/videos/search?q=5+minute+speech+youtube&docid=607987998550403533&mid=9A1E97AACC2161DC96C79A1E97AACC2161DC96C7&view=detail&FORM=VIRE
 
