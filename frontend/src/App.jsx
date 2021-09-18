@@ -16,7 +16,7 @@ export default function App() {
       <Link to='/videoPlayerPage'></Link>
 
       <Switch>
-        <Route path='/'>
+        <Route exact path='/'>
           <MainPage />
         </Route>
         <Route path='/videoPlayerPage'>

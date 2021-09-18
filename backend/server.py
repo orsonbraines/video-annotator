@@ -1,8 +1,13 @@
 from flask import Flask, jsonify, request
 import yaml
 import sys
+import os
 from dotenv import load_dotenv
 from backend.GoogleCloudStorageConnector import GoogleCloudStorageConnector
+from werkzeug.utils import secure_filename
+import uuid
+from backend.utils import getVideoLength
+import math
 
 
 load_dotenv()
@@ -32,8 +37,25 @@ def videos():
     if request.method == 'GET':
         return jsonify(db.get_videos())
     else:
-        video = request.get_json()
+        file = request.files['file']
+        filename = secure_filename(file.filename)
+        # Saving the video file temporarily to local static folder
+        local_video_filepath = os.path.join(app.root_path, 'static', filename)
+        file.save(local_video_filepath)
+        # Determining the video length
+        video_length = math.floor(getVideoLength(local_video_filepath) * 1000)
+        print(video_length)
+        # Uploading video file to video-annotator bucket in Google Cloud Storage
+        cloud_filename = str(uuid.uuid4())
+        google_cloud_storage_connector.upload(cloud_filename, local_video_filepath)
+        # Obtaining signed url of the video stored on cloud storage
+        signed_url = google_cloud_storage_connector.generate_download_signed_url(cloud_filename)
+        video = {'url': signed_url, 'name': filename, 'length': video_length}
+        # Adding video to db
         db.create_video(video)
+        # Deleting video file from local directory
+        os.remove(local_video_filepath)
+        # Return success response
         res = app.response_class(status=201)
         return res
 
