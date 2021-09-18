@@ -12,3 +12,15 @@ export async function get_video(video_id) {
   let data = await res.json();
   return data
 }
+
+export async function get_transcripts(video_id) {
+  let res = await fetch(`${base_url}/videos/${video_id}/transcripts`);
+  let data = await res.json();
+  return data
+}
+
+export async function get_annotations(video_id) {
+  let res = await fetch(`${base_url}/videos/${video_id}/annotations`);
+  let data = await res.json();
+  return data
+}

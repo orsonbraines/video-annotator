@@ -26,14 +26,17 @@ def get_videos():
     with conn.cursor() as cur:
         cur.execute('SELECT id, video_url, video_name, video_length, thumbnail_url FROM video')
         print(f'DEBUG: {cur.rowcount} videos fetched')
-        return [{'id': r[0], 'video_url': r[1], 'name': r[2], 'length': r[3], 'thumbnail_url': r[4]} for r in cur.fetchall()]
+        return [{'id': str(r[0]), 'video_url': r[1], 'name': r[2], 'length': r[3], 'thumbnail_url': r[4]} for r in cur.fetchall()]
 
 def get_video(id):
     with conn.cursor() as cur:
         cur.execute('SELECT id, video_url, video_name, video_length, thumbnail_url FROM video WHERE id=%s', (id,))
         if cur.rowcount == 1:
             r = cur.fetchone()
-            return {'id': str(r[0]), 'video_url': r[1], 'name': r[2], 'length': r[3], 'thumbnail_url': r[4]}
+            vid = {'id': str(r[0]), 'video_url': r[1], 'name': r[2], 'length': r[3], 'thumbnail_url': r[4]}
+            vid['annotations'] = get_annotations(vid['id'])
+            vid['transcripts'] = get_transcripts(vid['id'])
+            return vid
 
 def get_annotations(video_id):
     with conn.cursor() as cur:

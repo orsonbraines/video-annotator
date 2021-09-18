@@ -13,17 +13,22 @@ const VideoPlayer = () => {
 
   const [video, setVideo] = useState(null);
 
-  useEffect(() => get_video(id).then(data => setVideo(data)), []);
+  const [seekTime, setSeekTime] = useState(-1);
+
+  useEffect(() => get_video(id).then(data => {
+    setVideo(data);
+  }), []);
+
 
   return (
     <div>
       <Header />
       <div id='upper'>
-        <VideoBox video={video}/>
+        <VideoBox video={video} seekTime={seekTime} setSeekTime={setSeekTime}/>
         <VideoText />
       </div>
       <div id='lower'>
-        <Notes />
+        <Notes annotations={video ? video.annotations : []} setSeekTime={setSeekTime}/>
       </div>
     </div>
   );
