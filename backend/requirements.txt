@@ -1,3 +1,4 @@
+psycopg2-binary
 cachetools==4.2.2
 certifi==2021.5.30
 cffi==1.14.6
