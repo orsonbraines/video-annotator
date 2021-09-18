@@ -5,6 +5,6 @@
   margin-left: 80px;
   float: left;
   border: black solid;
-  height: 400px;
+  height: fit-content;
   background: grey;
 }
