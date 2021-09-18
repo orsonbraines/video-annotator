@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { get_videos } from './jsonapi';
 import './VideoLibrary.css';
 import './Video.css'
 
 export default function VideoLibrary() {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    get_videos().then(data => {
+      setVideos(data);
+    });
+  }, []);
+
+  let videoTiles = videos.map(video => 
+    (<Video key={video.id} id={video.id} name={video.name} url={video.url}/>)
+  );
+
   return (
     <div>
       <div className='topContainer'>
@@ -10,19 +23,19 @@ export default function VideoLibrary() {
         <hr/>
       </div>
       <div id='videosContainer'>
-        <Video />
+        {videoTiles}
       </div>
     </div>
   );
 }
 
-function Video() {
+function Video(props) {
   return (
-    <div>
-      <div id='img'></div>
-      <div id='videoInfo'>
-        <h2>Video Name</h2>
-        <p id='description'>This is where the video description will go.</p>
+    <div className='videoTile'>
+      <div class='img'></div>
+      <div class='videoInfo'>
+        <h2>{props.name}</h2>
+        <p class='description'>{props.url}</p>
       </div>
     </div>
   );

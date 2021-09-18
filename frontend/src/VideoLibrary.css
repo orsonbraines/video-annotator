@@ -1,13 +1,16 @@
 .topContainer {
-  float: left;
   margin: 20px 0px;
   margin-left: 95px;
   width: 90%;
   height: 50px;
 }
 
+.videoTile {
+    display: grid;
+    grid-template-rows: 1;
+}
+
 #videosContainer {
-  float: left;
   margin: 0px;
   margin-left: 95px;
   width: 90%;

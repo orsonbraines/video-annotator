@@ -1,6 +1,7 @@
 psycopg2-binary
 Flask
 PyYAML
+flask-cors
 cachetools==4.2.2
 certifi==2021.5.30
 cffi==1.14.6

@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import yaml
 import sys
 import os
@@ -17,6 +18,7 @@ import backend.db as db
 
 app = Flask(__name__)
 app.debug = True
+CORS(app)
 
 # init db
 with open('config.yml', 'r') as file:

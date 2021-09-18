@@ -1,11 +1,9 @@
-#videoInfo {
-  float: left;
+.videoInfo {
   width: 400px;
   height: 150px;
 }
 
-#img {
-  float: left;
+.img {
   width: 210px;
   height: 150px;
   border: 1px solid black;
