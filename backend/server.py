@@ -1,6 +1,11 @@
 from flask import Flask, jsonify, request
 import yaml
 import sys
+from dotenv import load_dotenv
+from backend.GoogleCloudStorageConnector import GoogleCloudStorageConnector
+
+
+load_dotenv()
 
 # local module
 import backend.db as db
@@ -12,6 +17,11 @@ app.debug = True
 with open('config.yml', 'r') as file:
     config = yaml.safe_load(file)
     db.init_conn(config['db_dsn'])
+
+# init Google Cloud Storage Connector
+BUCKET_NAME = "video-annotator"
+google_cloud_storage_connector = GoogleCloudStorageConnector(BUCKET_NAME)
+
 
 @app.route("/")
 def hello_world():

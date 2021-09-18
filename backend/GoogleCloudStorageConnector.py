@@ -1,11 +1,7 @@
 import os
 import datetime
 from google.cloud import storage
-from dotenv import load_dotenv
 
-load_dotenv()
-
-BUCKET_NAME = "video-annotator"
 
 class GoogleCloudStorageConnector(object):
     def __init__(self, bucket_name):
@@ -33,7 +29,7 @@ class GoogleCloudStorageConnector(object):
 
     def generate_download_signed_url(self, blob_name):
         blob = self.video_annotator_bucket.blob(blob_name)
-        expiration_period = datetime.timedelta(days=1)
+        expiration_period = datetime.timedelta(days=7)
         url = blob.generate_signed_url(
             version="v4",
             expiration=expiration_period,
