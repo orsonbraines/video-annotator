@@ -1,10 +1,8 @@
 #videoContainer {
-  width: 50%;
-  margin: 10px 10px;
-  margin-top: 25px;
-  margin-left: 80px;
+  width: 100%;
+  height: fit-content;
+  margin: 5px;
   float: left;
   border: black solid;
-  height: fit-content;
   background: grey;
 }

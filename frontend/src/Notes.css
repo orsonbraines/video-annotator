@@ -1,7 +1,6 @@
 #notesContainer {
-  width: 48%;
-  margin: 10px 10px;
-  margin-left: 80px;
+  width: auto;
+  margin: 5px;
   border: 2px black solid;
   height: 190px;
 }
