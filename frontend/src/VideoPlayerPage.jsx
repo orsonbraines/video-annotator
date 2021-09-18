@@ -15,6 +15,8 @@ const VideoPlayer = () => {
 
   const [seekTime, setSeekTime] = useState(-1);
 
+  const [searchStr, setSearchStr] = useState('');
+
   useEffect(() => get_video(id).then(data => {
     setVideo(data);
   }), []);
@@ -24,7 +26,10 @@ const VideoPlayer = () => {
       <Header />
       <div id='upper'>
         <VideoBox video={video} seekTime={seekTime} setSeekTime={setSeekTime}/>
-        <VideoText transcripts={video ? video.transcripts : []} setSeekTime={setSeekTime}/>
+        <VideoText transcripts={video ? video.transcripts : []} 
+                    setSeekTime={setSeekTime}
+                    searchStr={searchStr}
+                    setSearchStr={setSearchStr}/>
       </div>
       <div id='lower'>
         <Notes annotations={video ? video.annotations : []} setSeekTime={setSeekTime}/>
