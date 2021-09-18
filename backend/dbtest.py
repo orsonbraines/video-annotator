@@ -20,3 +20,5 @@ assert len(vals) == 3
 db.create_video({'url': vals[0],
                  'name': vals[1],
                  'length': vals[2]})
+
+print(db.get_videos())
