@@ -5,7 +5,8 @@ import VideoBox from './VideoBox.jsx';
 import VideoText from './VideoText.jsx';
 import Header from './Header.jsx';
 import Notes from './Notes.jsx';
-import VideoLibrary from './VideoLibrary.jsx'
+import VideoLibrary from './VideoLibrary.jsx';
+//import AddVideo from './AddVideo.jsx';
 //import Page from '.mainPage/MainPage.jsx'
 
 export default function App() {
