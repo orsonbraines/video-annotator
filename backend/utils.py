@@ -20,3 +20,9 @@ def getAudioFromVideo(video_filepath, destination):
     command = ['ffmpeg', '-i', video_filepath, '-ab', '160k', '-ac',
                '1', '-ar', '48000', '-vn', destination]
     subprocess.call(command)
+
+def transformTranscriptsForDb(transcript, video_id):
+    res = []
+    for tsStr in transcript:
+        res.append((video_id, int(float(tsStr) * 1000), transcript[tsStr]))
+    return res

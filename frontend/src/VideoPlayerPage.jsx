@@ -10,10 +10,10 @@ import { get_video } from './jsonapi';
 
 const VideoPlayer = () => {
   const {id} = useParams();
-
   const [video, setVideo] = useState(null);
-
   const [seekTime, setSeekTime] = useState(-1);
+
+  const [searchStr, setSearchStr] = useState('');
 
   useEffect(() => get_video(id).then(data => {
     setVideo(data);
@@ -22,15 +22,15 @@ const VideoPlayer = () => {
   return (
     <div style={{height: "auto"}}>
       <Header />
-      <div className="mainContainer">
-      <h2>Video Title</h2>
-        <div id='upper'>
-          <VideoBox video={video} seekTime={seekTime} setSeekTime={setSeekTime}/>
-          <VideoText transcripts={video ? video.transcripts : []} setSeekTime={setSeekTime}/>
-        </div>
-        <div id='lower'>
-          <Notes annotations={video ? video.annotations : []} setSeekTime={setSeekTime}/>
-        </div>
+      <div id='upper'>
+        <VideoBox video={video} seekTime={seekTime} setSeekTime={setSeekTime}/>
+        <VideoText transcripts={video ? video.transcripts : []} 
+                    setSeekTime={setSeekTime}
+                    searchStr={searchStr}
+                    setSearchStr={setSearchStr}/>
+      </div>
+      <div id='lower'>
+        <Notes annotations={video ? video.annotations : []} setSeekTime={setSeekTime}/>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2.extras import execute_values
 
 conn = None
 
@@ -9,8 +10,10 @@ def init_conn(dsn):
 
 def create_video(video):
     with conn.cursor() as cur:
-        cur.execute('INSERT INTO video(video_url, video_name, video_length, thumbnail_url) VALUES (%s,%s,%s,%s)',
+        cur.execute('INSERT INTO video(video_url, video_name, video_length, thumbnail_url) VALUES (%s,%s,%s,%s) RETURNING id',
             (video['video_url'], video['name'], video['length'], video['thumbnail_url']))
+        assert cur.rowcount == 1
+        return str(cur.fetchone()[0])
 
 def create_annotation(annotation):
     with conn.cursor() as cur:
@@ -21,6 +24,10 @@ def create_transcript(transcript):
     with conn.cursor() as cur:
         cur.execute('INSERT INTO transcript(video_id, ts, txt) VALUES (%s,%s,%s)',
             (transcript['video_id'], transcript['ts'], transcript['txt']))
+
+def create_transcripts(transcripts):
+    with conn.cursor() as cur:
+        execute_values(cur, 'INSERT INTO transcript(video_id, ts, txt) VALUES %s', transcripts)
 
 def get_videos():
     with conn.cursor() as cur:
