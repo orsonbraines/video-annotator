@@ -1,10 +1,15 @@
 import React from 'react';
 import './VideoBox.css';
+import { useParams } from "react-router-dom";
 
-export default function VideoBox() {
+
+const VideoBox = () => {
+  const {id} = useParams();
   return (
-    <div className='videoContainer'>
-      This is the video div.
+    <div id='videoContainer'>
+      Video number: {id}. This is the video div.
     </div>
   );
 }
+
+export default VideoBox;

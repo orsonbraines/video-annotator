@@ -18,6 +18,14 @@ h2 {
   font-size: 20px;
 }
 
+#name:hover {
+  cursor: pointer;
+}
+
+#videoDiv:hover {
+  cursor: pointer;
+}
+
 #description {
   margin-left: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

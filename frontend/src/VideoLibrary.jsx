@@ -1,12 +1,17 @@
 import React from 'react';
 import './VideoLibrary.css';
-import './Video.css'
+import './Video.css';
+import { Link } from 'react-router-dom';
 
 export default function VideoLibrary() {
   return (
     <div>
-      <div className='topContainer'>
+      <div id='topContainer'>
         <h1 id='title'>Video Library</h1>
+        <button id='addBtn'>
+          <span><ion-icon name="add-outline"></ion-icon></span>
+          <span>Add</span>
+        </button>
         <hr/>
       </div>
       <div id='videosContainer'>
@@ -17,13 +22,16 @@ export default function VideoLibrary() {
 }
 
 function Video() {
+  let id = 1;
   return (
-    <div>
-      <div id='img'></div>
-      <div id='videoInfo'>
-        <h2>Video Name</h2>
-        <p id='description'>This is where the video description will go.</p>
-      </div>
+    <div id='videoDiv'>
+      <Link to = {`/videoPlayer/${id}`}>
+        <div id='img'></div>
+        <div id='videoInfo'>
+          <h2 id='name'>Video Name</h2>
+          <p id='description'>This is where the video description will go.</p>
+        </div>
+      </Link>
     </div>
   );
 }
