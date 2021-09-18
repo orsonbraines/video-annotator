@@ -35,21 +35,16 @@ def getTranscript(filename):
     print("Waiting for operation to complete...")
     result = operation.result(timeout=90)
     text = ""
-    data = []
+    data = {}
     for result in result.results:
         alternative = result.alternatives[0]
         # print("Transcript: {}".format(alternative.transcript))
         # print("Confidence: {}".format(alternative.confidence))
 
         for word_info in alternative.words:
-            word = word_info.word
             start_time = word_info.start_time
 
-            # print(
-            #     f"Word: {word}, start_time: {start_time.total_seconds()}"
-            # )
-            data.append(
-                (list(filter(None, "{}".format(result.alternatives[0].transcript).split(".")))))
+            data[f'{start_time.total_seconds()}'] = (list(filter(None, "{}".format(alternative.transcript).split("."))))
             break
         text += (alternative.transcript + "\n")
     with open('text.txt', 'w') as output:
