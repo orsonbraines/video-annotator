@@ -10,9 +10,7 @@ import { get_video } from './jsonapi';
 
 const VideoPlayer = () => {
   const {id} = useParams();
-
   const [video, setVideo] = useState(null);
-
   const [seekTime, setSeekTime] = useState(-1);
 
   useEffect(() => get_video(id).then(data => {
