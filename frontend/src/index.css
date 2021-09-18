@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 code {
@@ -19,5 +20,5 @@ code {
 .mainContainer {
   margin: 0px 100px;
   width: auto;
-  height: auto;
+  height: fit-content;
 }

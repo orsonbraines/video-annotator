@@ -20,17 +20,20 @@ const VideoPlayer = () => {
   }), []);
   
   return (
-    <div>
+    <div style={{height: "auto"}}>
       <Header />
-      <div id='upper'>
-        <VideoBox video={video} seekTime={seekTime} setSeekTime={setSeekTime}/>
-        <VideoText transcripts={video ? video.transcripts : []} 
+      <div className="mainContainer">
+      <h2>Video Title</h2>
+        <div id='upper'>
+          <VideoBox video={video} seekTime={seekTime} setSeekTime={setSeekTime}/>
+          <VideoText transcripts={video ? video.transcripts : []} 
                     setSeekTime={setSeekTime}
                     searchStr={searchStr}
                     setSearchStr={setSearchStr}/>
-      </div>
-      <div id='lower'>
-        <Notes annotations={video ? video.annotations : []} setSeekTime={setSeekTime}/>
+        </div>
+        <div id='lower'>
+          <Notes annotations={video ? video.annotations : []} setSeekTime={setSeekTime}/>
+        </div>
       </div>
     </div>
   );
