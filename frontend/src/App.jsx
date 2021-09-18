@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Header from './Header.jsx';
+import './App.css';
 import VideoPlayer from './VideoPlayerPage.jsx';
 import MainPage from './MainPage';
 

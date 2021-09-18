@@ -1,17 +1,13 @@
 import React from 'react';
-import { Player, BigPlayButton } from 'video-react';
-import "../node_modules/video-react/dist/video-react.css";
 import './VideoBox.css';
+import { useParams } from "react-router-dom";
 
 
-const VideoBox = (props) => {
+const VideoBox = () => {
+  const {id} = useParams();
   return (
     <div id='videoContainer'>
-      {props.video && 
-        <Player>
-          <source src={props.video.url}/>
-          <BigPlayButton position="center" />
-        </Player>}
+      Video id: {id}. This is the video div.
     </div>
   );
 }
