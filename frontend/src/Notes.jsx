@@ -32,6 +32,8 @@ export default function VideoText(props) {
               key={a.id}
               annotation={a}
               setSeekTime={props.setSeekTime}
+              setAnnotations={props.setAnnotations}
+              video_id={video_id}
             />
           ))}
         </div>

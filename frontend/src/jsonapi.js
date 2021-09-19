@@ -46,3 +46,11 @@ export async function upload_annotations(data) {
   let res = await fetch(`${base_url}/videos/${data.video_id}/annotations`, opts);
   return await res.json();
 }
+
+export async function delete_annotation(data) {
+  let opts = {
+    method: 'DELETE',
+  }
+  let res = await fetch(`${base_url}/videos/${data.video_id}/annotations/${data.annotation_id}`, opts)
+  return await res.json();
+}

@@ -64,3 +64,7 @@ def get_transcripts(video_id):
 def edit_annotation(id, new_msg):
     with conn.cursor() as cur:
         cur.execute('UPDATE annotation SET msg=%s WHERE id=%s', (new_msg,id))
+
+def delete_annotation(id):
+    with conn.cursor() as cur:
+        cur.execute('DELETE FROM annotation WHERE id=%s', (id,))
