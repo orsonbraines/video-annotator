@@ -1,8 +1,16 @@
-.annotationMsg {
-  margin-left: 10px;
+.annotation {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
-.deleteButton {
-  float: right;
+.annotationMsg {
+  width: 90%;
+  margin-left: 10px;
+  overflow: hidden;
+}
+
+.deleteButtonSpan {
+  margin-left: auto;
   margin-right: 10px;
 }

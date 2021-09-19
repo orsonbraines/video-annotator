@@ -67,6 +67,10 @@ def get_transcripts(video_id):
         print(f'DEBUG: {cur.rowcount} transcripts fetched for video {video_id}')
         return [{'id': str(r[0]), 'video_id': r[1], 'ts': r[2], 'txt': r[3]} for r in cur.fetchall()]
 
+def edit_transcript(id, new_txt):
+    with conn.cursor() as cur:
+        cur.execute('UPDATE transcript SET txt=%s WHERE id=%s', (new_txt,id))
+
 def edit_annotation(id, new_msg):
     with conn.cursor() as cur:
         cur.execute('UPDATE annotation SET msg=%s WHERE id=%s', (new_msg,id))

@@ -1,3 +1,13 @@
+.transcript {
+  margin-bottom: 2px;
+}
+
 .transcriptTxt {
   margin-left: 10px;
+  margin-bottom: 5px;
+  line-height: 125%;
+}
+
+.transcript {
+  display: flex;
 }
