@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 import yaml
 import sys
@@ -34,7 +34,7 @@ google_cloud_storage_connector = GoogleCloudStorageConnector(BUCKET_NAME)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return render_template('index.html');
 
 @app.route("/videos", methods=['GET','POST'])
 def videos():
