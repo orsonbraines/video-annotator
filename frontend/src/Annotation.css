@@ -1,5 +1,13 @@
+.annotation {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
 .annotationMsg {
+  width: 90%;
   margin-left: 10px;
+  overflow: hidden;
 }
 
 .deleteButton {

@@ -7,7 +7,7 @@
     height: auto;
     font-family: 'Open Sans', sans-serif;
     cursor: pointer;
-
+    width: fit-content;
 }
 .ts-btn:hover {
     color: #ffffff;

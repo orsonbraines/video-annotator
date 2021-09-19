@@ -8,6 +8,15 @@
   float: left;
 }
 
+#title {
+  font-family: Noto Sans, sans-serif;
+  font-size: 23px;
+  font-style: oblique;
+  font-weight: 500;
+  margin-left: 35px;
+  margin-top: 15px;
+}
+
 #lower {
   float: left;
   width: 100%;
