@@ -22,8 +22,9 @@ export default function VideoText(props) {
 
   return (
     <div id="notesContainer">
+      <h2 id="notes">Notes</h2>
+      <hr/>
       <div className="annotations">
-        <h2 id="notes">Notes</h2>
         <div id="notesDisplay">
           {props.annotations.map((a) => (
             <Annotation

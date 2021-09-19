@@ -1,19 +1,24 @@
 #notesContainer {
   width: auto;
   margin: 5px;
-  border: 2px black solid;
   height: 190px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 0 rem 2rem;
 }
 
 #notes {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 16px;
-  margin-top: 5px;
+  font-size: 20px;
+  margin: 0px;
+  margin-bottom: 5px;
   margin-left: 10px;
+}
+
+hr {
+  width: 75%;
+  margin-bottom: 5px;
 }
 
 #notesDisplay {
@@ -21,9 +26,8 @@
   margin-top: 8px;
   font-size: 13px;
   width: 96%;
-  height: 100px;
+  height: 120px;
   overflow-y: scroll;
-
 }
 
 #addNote {
@@ -43,4 +47,8 @@
   font-size: 17px;
   border: none;
   cursor: pointer;
+}
+
+.annotation {
+  margin-bottom: 2px;
 }
