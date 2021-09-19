@@ -27,7 +27,10 @@ export default function VideoLibrary() {
       setFile(event.target.files[0]);
       setUploading(true);
       upload_video(event.target.files[0])
-        .then(() => setUploading(false));
+        .then((data) => {
+          setUploading(false);
+          setVideos(data);
+        });
       console.log(event.target.files[0]);
   }
 
