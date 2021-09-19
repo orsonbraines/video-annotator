@@ -33,6 +33,16 @@ export default function VideoText(props) {
               annotation={a}
               setSeekTime={props.setSeekTime}
               setAnnotations={props.setAnnotations}
+              setMsg={(msg) => {
+                let annotationsCopy = [...props.annotations];
+                for(let copyAnnotation of annotationsCopy) {
+                  if(copyAnnotation.id === a.id) {
+                    console.log('MATCH!')
+                    copyAnnotation.msg = msg;
+                  }
+                }
+                props.setAnnotations(annotationsCopy);
+              }}
               video_id={video_id}
             />
           ))}

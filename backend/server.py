@@ -120,7 +120,13 @@ def annotations(video_id):
         db.create_annotation(annotation)
         return app.make_response((jsonify(db.get_annotations(video_id)),201))
 
-@app.route("/videos/<video_id>/annotations/<annotation_id>", methods=['DELETE'])
+@app.route("/videos/<video_id>/annotations/<annotation_id>", methods=['DELETE', 'PUT'])
 def deleteAnnotations(video_id, annotation_id):
-    db.delete_annotation(annotation_id)
-    return app.make_response((jsonify(db.get_annotations(video_id)),201))
+    if request.method == 'DELETE':
+        db.delete_annotation(annotation_id)
+        return app.make_response((jsonify(db.get_annotations(video_id)),201))
+    else:
+        annotation = request.get_json()
+        print(request)
+        db.edit_annotation(annotation_id, annotation['msg'])
+        return {}
