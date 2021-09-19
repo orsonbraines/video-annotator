@@ -7,14 +7,17 @@ import { upload_annotations} from './jsonapi';
 export default function VideoText(props) {
   const [msg, setMsg] = useState("");
   const id = "32424242";
-  const video_id = 694439132509415185;
+  const video_id = "694439132509415185";
   const ts = 4000;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {id, msg, ts, video_id};
+    const data = {
+      "video_id": video_id,
+      "ts": ts,
+      "msg": msg
+    };
     upload_annotations(data);
-    
   };
 
   return (
