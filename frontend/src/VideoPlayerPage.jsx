@@ -30,7 +30,7 @@ const VideoPlayer = () => {
   useEffect(() => get_video(id).then(data => {
     setVideo(data);
     setName(data.name);
-
+    console.log('transcripts', data.transcripts);
     setTranscripts(data.transcripts);
     setAnnotations(data.annotations);
   }), []);

@@ -11,6 +11,7 @@ from backend.utils import getVideoLength, downloadVideoThumbnail, getAudioFromVi
 import math
 from backend.audioTranscript import getTranscript
 import tempfile
+import re
 
 
 load_dotenv()
@@ -81,13 +82,22 @@ def videos():
         # Return success response
         return app.make_response((jsonify(db.get_videos()),201))
 
-@app.route("/videos/<video_id>")
+@app.route("/videos/<video_id>", methods=['GET', 'DELETE'])
 def video(video_id):
     vid = db.get_video(video_id)
     if vid == None:
         return app.make_response(({'msg': f'video {video_id} not found'}, 404))
 
-    return jsonify(vid)
+    if request.method == 'GET':
+        return jsonify(vid)
+    else :
+        # delete video/annotations/transctripts
+        db.delete_video(video_id)
+        # delete cloud storage
+        video_uuid = re.match(r'https://storage.googleapis.com/video-annotator/([0-9a-f\-]+)/.*', vid['video_url']).group(1)
+        google_cloud_storage_connector.delete(video_uuid)
+        # return remaining videos
+        return jsonify(db.get_videos())
 
 @app.route("/videos/<video_id>/transcripts", methods=['GET', 'POST'])
 def transcripts(video_id):

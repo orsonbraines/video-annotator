@@ -23,6 +23,15 @@ export async function upload_video(file) {
   let res = await fetch(`${base_url}/videos`, opts);
   return await res.json();;
 }
+
+export async function delete_video(video_id) {
+  let opts = {
+    method: 'DELETE'
+  };
+  let res = await fetch(`${base_url}/videos/${video_id}`, opts);
+  return await res.json();
+}
+
 export async function get_transcripts(video_id) {
   let res = await fetch(`${base_url}/videos/${video_id}/transcripts`);
   let data = await res.json();

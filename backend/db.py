@@ -45,6 +45,12 @@ def get_video(id):
             vid['transcripts'] = get_transcripts(vid['id'])
             return vid
 
+def delete_video(id):
+    with conn.cursor() as cur:
+        cur.execute('DELETE FROM annotation WHERE video_id=%s', (id,))
+        cur.execute('DELETE FROM transcript WHERE video_id=%s', (id,))
+        cur.execute('DELETE FROM video WHERE id=%s', (id,))
+
 def get_annotations(video_id):
     with conn.cursor() as cur:
         cur.execute(""" SELECT id, video_id, ts, msg FROM annotation

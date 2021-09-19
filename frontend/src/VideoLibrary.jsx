@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { get_videos, upload_video, get_video  } from './jsonapi';
+import { get_videos, upload_video, delete_video } from './jsonapi';
 import './VideoLibrary.css';
 import './Video.css';
 import { Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ export default function VideoLibrary() {
 
   //maps videos to dom components
   let videoTiles = videos.map(video => 
-    (<Video key={video.id} id={video.id} name={video.name} vidlen={video.length} thumbnail={video.thumbnail_url}/>)
+    (<Video key={video.id} id={video.id} name={video.name} vidlen={video.length} thumbnail={video.thumbnail_url} setVideos={setVideos}/>)
   );
 
   function FileUpload(event) {
@@ -62,6 +62,12 @@ function Video(props) {
           <h2>{props.name}</h2>
           {console.log(props.vidlen)}
           <p className='description'>{`${Math.floor(props.vidlen / 60000)} Minutes | ${Math.floor((props.vidlen - 60000* Math.floor(props.vidlen / 60000)) / 1000)} Seconds | ${props.vidlen % 1000} Milliseconds`}</p>
+        </div>
+        <div>
+          <button onClick={(e) => {
+            e.preventDefault();
+            delete_video(props.id).then(data => props.setVideos(data));
+          }}>DELETE</button>
         </div>
       </div>
     </Link>
