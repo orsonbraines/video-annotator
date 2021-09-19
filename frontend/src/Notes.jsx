@@ -54,7 +54,7 @@ export default function VideoText(props) {
           placeholder="Start typing a note..."
           id="addNote"
         ></input>
-        <button type="submit">Submit</button>
+        <button type="submit" id='submitBtn'>Submit</button>
       </form>
     </div>
   );
