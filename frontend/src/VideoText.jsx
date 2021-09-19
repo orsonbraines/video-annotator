@@ -16,7 +16,7 @@ export default function VideoText(props) {
         {props.transcripts
           .filter(t => t.txt.includes(props.searchStr))
           .map(t => (
-          <Transcript key={t.id} transcript={t} setSeekTime={props.setSeekTime}></Transcript>
+          <Transcript key={t.id} transcript={t} setSeekTime={props.setSeekTime} highlighted={props.highlightTranscriptId === t.id}></Transcript>
         ))}
       </div>
     </div>

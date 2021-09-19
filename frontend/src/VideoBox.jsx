@@ -6,11 +6,9 @@ import { useParams } from "react-router-dom";
 
 
 const VideoBox = (props) => {
-  let playerRef = useRef(null);
-
   useEffect(() => {
-    if(playerRef && props.seekTime >= 0) {
-      playerRef.seek(props.seekTime);
+    if(props.videoPlayer && props.seekTime >= 0) {
+      props.videoPlayer.seek(props.seekTime);
       props.setSeekTime(-1);
     }
   }, [props.seekTime]);
@@ -18,7 +16,7 @@ const VideoBox = (props) => {
   return (
     <div id='videoContainer'>
       {props.video && 
-        <Player ref={player => playerRef = player}>
+        <Player ref={player => props.setVideoPlayer(player)}>
           <source src={props.video.video_url}/>
           <BigPlayButton position="center" />
         </Player>}

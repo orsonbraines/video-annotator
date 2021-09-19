@@ -17,5 +17,5 @@ CREATE TABLE transcript(
     id SERIAL PRIMARY KEY,
     video_id INT REFERENCES video,
     ts INT NOT NULL,
-    txt VARCHAR(100) NOT NULL
+    txt VARCHAR(1000) NOT NULL
 );
