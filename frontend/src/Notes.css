@@ -16,13 +16,14 @@
   margin-left: 10px;
 }
 
-#text {
+#notesDisplay {
   margin: 2px 10px;
   margin-top: 8px;
   font-size: 13px;
   width: 96%;
-  height: 150px;
-  /*overflow-y: scroll;*/
+  height: 100px;
+  overflow-y: scroll;
+
 }
 
 #addNote {
