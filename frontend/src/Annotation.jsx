@@ -1,6 +1,8 @@
 import React from 'react';
 import './Annotation.css';
 import { delete_annotation } from './jsonapi';
+import DeleteButton from "./DeleteButton";
+
 
 export default function Annotation(props) {
   const onClick = () => {
@@ -16,7 +18,7 @@ export default function Annotation(props) {
     <div className='annotation'>
       <span><button onClick={() => props.setSeekTime(props.annotation.ts / 1000.0)}>{`${String(Math.floor(props.annotation.ts / 60000)).padStart(2,'0')}:${String(Math.floor((props.annotation.ts - 60000 * Math.floor(props.annotation.ts / 60000)) / 1000)).padStart(2,'0')}`}</button></span>
       <span className="annotationMsg">{props.annotation.msg}</span>
-      <span className="deleteButton"><button onClick={onClick}>Delete</button></span>
+      <span className="deleteButtonSpan"><DeleteButton doDelete={onClick}/></span>
     </div>
   );
 }

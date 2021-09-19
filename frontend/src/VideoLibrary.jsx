@@ -3,6 +3,7 @@ import { get_videos, upload_video, delete_video } from './jsonapi';
 import './VideoLibrary.css';
 import './Video.css';
 import { Link } from 'react-router-dom';
+import DeleteButton from './DeleteButton';
 
 
 export default function VideoLibrary() {
@@ -62,11 +63,11 @@ function Video(props) {
           <h2>{props.name}</h2>
           <p id='description'>{`${String(Math.floor(props.vidlen / 60000)).padStart(2,'0')}:${String(Math.floor((props.vidlen - 60000 * Math.floor(props.vidlen / 60000)) / 1000)).padStart(2,'0')}`}</p>
         </div>
-        <div>
-          <button onClick={(e) => {
+        <div style={{'marginTop':'10px', 'marginRight': '10px'}}>
+          <DeleteButton doDelete={(e) => {
             e.preventDefault();
             delete_video(props.id).then(data => props.setVideos(data));
-          }}>DELETE</button>
+          }}/>
         </div>
       </div>
     </Link>
