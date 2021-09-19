@@ -67,7 +67,7 @@ hr {
   margin: 0px;
 }
 
-.description {
-  text-decoration: none;
+#description {
+  text-decoration: none !important;
   color: black;
 }
