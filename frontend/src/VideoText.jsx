@@ -7,7 +7,7 @@ export default function VideoText(props) {
     <div id='textContainer'>
       <div id='searchContainer'>
         <input type='text' 
-                placeholder='Search' 
+                placeholder='  Search in the transcript...' 
                 id='searchBar' 
                 value={props.searchStr}
                 onChange={(e) => props.setSearchStr(e.target.value)}></input>
