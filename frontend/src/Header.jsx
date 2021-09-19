@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <div id='header'>
       <Link to = "/">
-        <h1 id='appName'>Video Annotator App</h1>
+        <h1 id='appName'>JOHTnotes</h1>
       </Link>
     </div>
   );
