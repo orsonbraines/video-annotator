@@ -34,18 +34,18 @@ export default function VideoLibrary() {
 
   return (
     <div className='mainContainer'>
-        <div id='topContainer'>
-          <h1 id='title'>Video Library</h1>
-          <label htmlFor="addBtn" className="file-upload">
-            <span><ion-icon name="add-outline" /></span>
-            {uploading ? 'Uploading' : 'Upload'} 
-          </label>
-          <input type='file' id='addBtn' accept="video/*" onChange={FileUpload} />
-          <hr/>
-        </div>
-        <div id='videosContainer'>
-          {videoTiles}
-        </div>
+      <div id='topContainer'>
+        <h1 id='title'>Video Library</h1>
+        <label htmlFor="addBtn" className="file-upload">
+          <span><ion-icon name="add-outline" /></span>
+          {uploading ? 'Uploading' : 'Upload'} 
+        </label>
+        <input type='file' id='addBtn' accept="video/*" onChange={FileUpload} />
+        <hr/>
+      </div>
+      <div id='videosContainer'>
+        {videoTiles}
+      </div>
     </div>
   );
 }

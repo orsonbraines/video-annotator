@@ -1,9 +1,12 @@
 #notesContainer {
-  width: 48%;
-  margin: 10px 10px;
-  margin-left: 80px;
+  width: auto;
+  margin: 5px;
   border: 2px black solid;
   height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
 }
 
 #notes {
@@ -20,4 +23,23 @@
   width: 96%;
   height: 150px;
   /*overflow-y: scroll;*/
+}
+
+#addNote {
+  width: 25rem;
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: 1px rgb(151, 151, 151) solid;
+  margin-right: 10px;
+}
+
+#noteInput button {
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
 }

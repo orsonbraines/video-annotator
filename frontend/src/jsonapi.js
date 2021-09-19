@@ -34,3 +34,18 @@ export async function get_annotations(video_id) {
   let data = await res.json();
   return data
 }
+
+export async function upload_annotations(data) {
+  // let formData = new FormData();
+  console.log(JSON.stringify(data));
+  let opts = {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data),
+  };
+  console.log(data)
+  let res = await fetch(`${base_url}/videos/${data.video_id}/annotations`, opts);
+  console.log(res);
+}

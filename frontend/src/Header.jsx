@@ -4,7 +4,7 @@ import './Header.css';
 export default function Header() {
   return (
     <div id='header'>
-      <h1 id='appName'>App Name</h1>
+      <h1 id='appName'>Video Annotator App</h1>
     </div>
   );
 }

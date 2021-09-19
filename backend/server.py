@@ -107,7 +107,8 @@ def annotations(video_id):
         return jsonify(db.get_annotations(video_id))
     else:
         annotation = request.get_json()
-        annotation['video_id'] = video_id
+        print(annotation)
+        annotation['video_id'] = int(video_id)
         db.create_annotation(annotation)
         res = app.response_class(status=201)
         return res
