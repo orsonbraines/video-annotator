@@ -60,7 +60,6 @@ function Video(props) {
         <div className='thumbnail'><img src={props.thumbnail} alt="" /></div>
         <div className='videoInfo'>
           <h2>{props.name}</h2>
-          {console.log(props.vidlen)}
           <p className='description'>{`${Math.floor(props.vidlen / 60000)} Minutes | ${Math.floor((props.vidlen - 60000* Math.floor(props.vidlen / 60000)) / 1000)} Seconds | ${props.vidlen % 1000} Milliseconds`}</p>
         </div>
         <div>
