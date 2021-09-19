@@ -4,20 +4,21 @@ import yaml
 import sys
 import os
 from dotenv import load_dotenv
-from backend.GoogleCloudStorageConnector import GoogleCloudStorageConnector
+from GoogleCloudStorageConnector import GoogleCloudStorageConnector
 from werkzeug.utils import secure_filename
 import uuid
-from backend.utils import getVideoLength, downloadVideoThumbnail, getAudioFromVideo, transformTranscriptsForDb
+from utils import getVideoLength, downloadVideoThumbnail, getAudioFromVideo, transformTranscriptsForDb
 import math
-from backend.audioTranscript import getTranscript
+from audioTranscript import getTranscript
 import tempfile
 import re
+from google.cloud import secretmanager
 
 
 load_dotenv()
 
 # local module
-import backend.db as db
+import db as db
 
 app = Flask(__name__)
 CORS(app)
@@ -25,7 +26,15 @@ CORS(app)
 # init db
 with open('config.yml', 'r') as file:
     config = yaml.safe_load(file)
-    db.init_conn(config['db_dsn'])
+    db_dsn = config['db_dsn']
+    if os.environ.get('ROOT_CRT_CONTENT'):
+        f = open("secret.txt", "w")
+        f.write(os.environ.get('ROOT_CRT_CONTENT'))
+        f.close()
+        crt = "sslrootcert=" + os.path.join(app.root_path, "secret.txt")
+    else:
+        crt = config['crt']
+    db.init_conn(db_dsn + crt)
 
 # init Google Cloud Storage Connector
 BUCKET_NAME = "video-annotator"

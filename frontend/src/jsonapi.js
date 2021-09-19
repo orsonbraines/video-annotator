@@ -1,16 +1,22 @@
-let base_url = 'http://localhost:8000' // change depending on server location 
+let base_url = "";
+if(process.env.NODE_ENV === 'production') {
+  base_url = 'https://video-annotator-bfsgx2vx7q-uc.a.run.app';
+}
+else {
+  base_url = 'http://localhost:8000';
+}
 
 export async function get_videos() {
   let res = await fetch(`${base_url}/videos`);
   let data = await res.json();
   console.log(data);
-  return data
+  return data;
 }
 
 export async function get_video(video_id) {
   let res = await fetch(`${base_url}/videos/${video_id}`);
   let data = await res.json();
-  return data
+  return data;
 }
 
 export async function upload_video(file) {
@@ -21,7 +27,7 @@ export async function upload_video(file) {
     body: formData
   };
   let res = await fetch(`${base_url}/videos`, opts);
-  return await res.json();;
+  return await res.json();
 }
 
 export async function delete_video(video_id) {
@@ -35,13 +41,13 @@ export async function delete_video(video_id) {
 export async function get_transcripts(video_id) {
   let res = await fetch(`${base_url}/videos/${video_id}/transcripts`);
   let data = await res.json();
-  return data
+  return data;
 }
 
 export async function get_annotations(video_id) {
   let res = await fetch(`${base_url}/videos/${video_id}/annotations`);
   let data = await res.json();
-  return data
+  return data;
 }
 
 export async function upload_annotations(data) {
@@ -59,7 +65,7 @@ export async function upload_annotations(data) {
 export async function delete_annotation(data) {
   let opts = {
     method: 'DELETE',
-  }
-  let res = await fetch(`${base_url}/videos/${data.video_id}/annotations/${data.annotation_id}`, opts)
+  };
+  let res = await fetch(`${base_url}/videos/${data.video_id}/annotations/${data.annotation_id}`, opts);
   return await res.json();
 }
