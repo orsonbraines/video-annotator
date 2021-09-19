@@ -25,7 +25,7 @@ CORS(app)
 # init db
 with open('config.yml', 'r') as file:
     config = yaml.safe_load(file)
-    db.init_conn(config['db_dsn'])
+    db.init_conn(config['db_dsn'] + config['crt'])
 
 # init Google Cloud Storage Connector
 BUCKET_NAME = "video-annotator"
