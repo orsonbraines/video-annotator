@@ -30,6 +30,17 @@ hr {
   overflow-y: scroll;
 }
 
+#notesDisplay::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border: 4px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box;  
+}
+
+#notesDisplay::-webkit-scrollbar {
+  width: 16px;
+}
+
 #addNote {
   width: 40rem;
   padding: 6px;
@@ -56,4 +67,8 @@ hr {
 
 .annotation {
   margin-bottom: 2px;
+}
+
+#submitBtn {
+  border-radius: 4px;
 }
