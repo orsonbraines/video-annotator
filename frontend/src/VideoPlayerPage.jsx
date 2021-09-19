@@ -20,11 +20,13 @@ const VideoPlayer = () => {
   const [recalculate, setReclculate] = useState(false);
 
   const [highlightTranscriptId, setHighlightTranscriptId] = useState(null);
+  const [name, setName] = useState('My Video');
 
   useEffect(() => get_video(id).then(data => {
     setVideo(data);
+    setName(video.name);
   }), []);
-
+  
   const getCurrentTranscript = () => {
     if(!videoPlayer || !video || video.transcripts.length < 1) {
       return;
@@ -57,7 +59,7 @@ const VideoPlayer = () => {
     <div style={{height: "auto"}}>
       <Header />
       <div className="mainContainer">
-      <h2>Video Title</h2>
+      <h2 id="title">{name}</h2> 
         <div id='upper'>
           <VideoBox video={video} 
                     seekTime={seekTime} 
