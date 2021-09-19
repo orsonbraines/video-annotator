@@ -109,6 +109,12 @@ def transcripts(video_id):
         db.create_transcript(transcript)
         return app.make_response((jsonify(db.get_transcripts(video_id)),201))
 
+@app.route("/videos/<video_id>/transcripts/<transcript_id>", methods=['PUT'])
+def put_transcript(video_id, transcript_id):
+    transcript = request.get_json()
+    db.edit_transcript(transcript_id, transcript['txt'])
+    return {}
+
 @app.route("/videos/<video_id>/annotations", methods=['GET','POST'])
 def annotations(video_id):
     if request.method == 'GET':
@@ -120,7 +126,12 @@ def annotations(video_id):
         db.create_annotation(annotation)
         return app.make_response((jsonify(db.get_annotations(video_id)),201))
 
-@app.route("/videos/<video_id>/annotations/<annotation_id>", methods=['DELETE'])
+@app.route("/videos/<video_id>/annotations/<annotation_id>", methods=['DELETE', 'PUT'])
 def deleteAnnotations(video_id, annotation_id):
-    db.delete_annotation(annotation_id)
-    return app.make_response((jsonify(db.get_annotations(video_id)),201))
+    if request.method == 'DELETE':
+        db.delete_annotation(annotation_id)
+        return app.make_response((jsonify(db.get_annotations(video_id)),201))
+    else:
+        annotation = request.get_json()
+        db.edit_annotation(annotation_id, annotation['msg'])
+        return {}

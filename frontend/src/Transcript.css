@@ -7,3 +7,7 @@
   margin-bottom: 5px;
   line-height: 95%;
 }
+
+.transcript {
+  display: flex;
+}

@@ -75,6 +75,7 @@ const VideoPlayer = () => {
                     videoPlayer={videoPlayer}
                     setVideoPlayer={setVideoPlayer}/>
           <VideoText  transcripts={transcripts} 
+                      setTranscripts={setTranscripts}
                       setSeekTime={setSeekTime}
                       searchStr={searchStr}
                       setSearchStr={setSearchStr}

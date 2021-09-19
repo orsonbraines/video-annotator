@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-.deleteButton {
-  float: right;
+.deleteButtonSpan {
+  margin-left: auto;
   margin-right: 10px;
 }

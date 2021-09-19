@@ -63,3 +63,27 @@ export async function delete_annotation(data) {
   let res = await fetch(`${base_url}/videos/${data.video_id}/annotations/${data.annotation_id}`, opts)
   return await res.json();
 }
+
+export async function edit_annotation(annotation) {
+  let opts = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(annotation)
+  }
+  let res = await fetch(`${base_url}/videos/${annotation.video_id}/annotations/${annotation.id}`, opts)
+  return await res.json();
+}
+
+export async function edit_transcript(transcript) {
+  let opts = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(transcript)
+  }
+  let res = await fetch(`${base_url}/videos/${transcript.video_id}/transcripts/${transcript.id}`, opts)
+  return await res.json();
+}
