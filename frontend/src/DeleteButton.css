@@ -1,8 +1,12 @@
 .deleteButton {
   background-color: crimson;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .deleteButton:hover {
-  background-color: #b5160b;
+  background-color: #c32b2b;
   cursor: pointer;
 }

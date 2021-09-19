@@ -31,12 +31,13 @@ hr {
 }
 
 #addNote {
-  width: 25rem;
+  width: 40rem;
   padding: 6px;
   margin-top: 8px;
   font-size: 17px;
   border: 1px rgb(151, 151, 151) solid;
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 #noteInput button {
@@ -47,6 +48,10 @@ hr {
   font-size: 17px;
   border: none;
   cursor: pointer;
+}
+
+#noteInput button:hover {
+  background: rgb(185, 185, 185);
 }
 
 .annotation {

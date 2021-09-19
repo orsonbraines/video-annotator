@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.ts-btn {
+    background-color: #fffcd2;
+    border-radius: 3px;
+    border: none;
+    height: auto;
+    margin-left: 5px;
+    font-family: 'Open Sans', sans-serif;
+    cursor: pointer;
+
+}
+.ts-btn:hover {
+    color: #ffffff;
+    background: #ff4f0a;
+}
