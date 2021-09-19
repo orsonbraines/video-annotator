@@ -1,24 +1,27 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import yaml
-import sys
-import os
 from dotenv import load_dotenv
-from GoogleCloudStorageConnector import GoogleCloudStorageConnector
 from werkzeug.utils import secure_filename
+import os
+import yaml
 import uuid
-from utils import getVideoLength, downloadVideoThumbnail, getAudioFromVideo, transformTranscriptsForDb
 import math
-from audioTranscript import getTranscript
 import tempfile
 import re
-from google.cloud import secretmanager
-
 
 load_dotenv()
 
-# local module
-import db as db
+if os.environ.get('FLASK_ENV') == 'development':
+    from backend.GoogleCloudStorageConnector import GoogleCloudStorageConnector
+    from backend.utils import getVideoLength, downloadVideoThumbnail, getAudioFromVideo, transformTranscriptsForDb
+    from backend.audioTranscript import getTranscript
+    import backend.db as db
+else:
+    from GoogleCloudStorageConnector import GoogleCloudStorageConnector
+    from utils import getVideoLength, downloadVideoThumbnail, getAudioFromVideo, transformTranscriptsForDb
+    from audioTranscript import getTranscript
+    import db as db
+
 
 app = Flask(__name__)
 CORS(app)
