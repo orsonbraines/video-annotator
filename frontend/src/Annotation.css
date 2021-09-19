@@ -8,6 +8,13 @@
   width: 90%;
   margin-left: 10px;
   overflow: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+}
+
+.annotationMsg:hover {
+  background: rgba(231, 231, 231, 0.411);
 }
 
 .deleteButtonSpan {
