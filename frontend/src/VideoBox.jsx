@@ -15,9 +15,9 @@ const VideoBox = (props) => {
 
   return (
     <div id='videoContainer'>
-      {props.video && 
+      {props.video_url && 
         <Player ref={player => props.setVideoPlayer(player)}>
-          <source src={props.video.video_url}/>
+          <source src={props.video_url}/>
           <BigPlayButton position="center" />
         </Player>}
     </div>

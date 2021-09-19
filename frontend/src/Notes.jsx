@@ -6,24 +6,26 @@ import { upload_annotations} from './jsonapi';
 
 export default function VideoText(props) {
   const [msg, setMsg] = useState("");
-  const id = "32424242";
-  const video_id = "694439132509415185";
-  const ts = 4000;
+  const video_id = props.video_id;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const ts = Math.floor(props.videoPlayer.getState().player.currentTime * 1000)
     const data = {
       "video_id": video_id,
       "ts": ts,
       "msg": msg
     };
-    upload_annotations(data);
+    upload_annotations(data).then(res => {
+      props.setAnnotations(res);
+    });
   };
 
   return (
     <div id="notesContainer">
+      <h2 id="notes">Notes</h2>
+      <hr/>
       <div className="annotations">
-        <h2 id="notes">Notes</h2>
         <div id="notesDisplay">
           {props.annotations.map((a) => (
             <Annotation

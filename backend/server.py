@@ -79,8 +79,7 @@ def videos():
         # Deleting temporary video folder from local directory
         temp_local_folder.cleanup()
         # Return success response
-        res = app.response_class(status=201)
-        return res
+        return app.make_response((jsonify(db.get_videos()),201))
 
 @app.route("/videos/<video_id>")
 def video(video_id):
@@ -98,8 +97,7 @@ def transcripts(video_id):
         transcript = request.get_json()
         transcript['video_id'] = video_id
         db.create_transcript(transcript)
-        res = app.response_class(status=201)
-        return res
+        return app.make_response((jsonify(db.get_transcripts(video_id)),201))
 
 @app.route("/videos/<video_id>/annotations", methods=['GET','POST'])
 def annotations(video_id):
@@ -110,7 +108,6 @@ def annotations(video_id):
         print(annotation)
         annotation['video_id'] = int(video_id)
         db.create_annotation(annotation)
-        res = app.response_class(status=201)
-        return res
+        return app.make_response((jsonify(db.get_annotations(video_id)),201))
 
 

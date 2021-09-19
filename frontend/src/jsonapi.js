@@ -48,4 +48,5 @@ export async function upload_annotations(data) {
   console.log(data)
   let res = await fetch(`${base_url}/videos/${data.video_id}/annotations`, opts);
   console.log(res);
+  return await res.json();
 }
