@@ -37,7 +37,6 @@ export default function VideoText(props) {
                 let annotationsCopy = [...props.annotations];
                 for(let copyAnnotation of annotationsCopy) {
                   if(copyAnnotation.id === a.id) {
-                    console.log('MATCH!')
                     copyAnnotation.msg = msg;
                   }
                 }

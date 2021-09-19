@@ -20,7 +20,6 @@ export default function Annotation(props) {
   const editAnnotation = () => {
     const data = {...props.annotation};
     data.msg = editedMsg;
-    console.log(data);
     edit_annotation(data);
     props.setMsg(data.msg);
     setEditing(false);
