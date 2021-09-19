@@ -21,7 +21,7 @@ export async function upload_video(file) {
     body: formData
   };
   let res = await fetch(`${base_url}/videos`, opts);
-  return true;
+  return await res.json();;
 }
 export async function get_transcripts(video_id) {
   let res = await fetch(`${base_url}/videos/${video_id}/transcripts`);
@@ -36,8 +36,6 @@ export async function get_annotations(video_id) {
 }
 
 export async function upload_annotations(data) {
-  // let formData = new FormData();
-  console.log(JSON.stringify(data));
   let opts = {
     headers: {
       'Content-Type': 'application/json'
@@ -45,7 +43,6 @@ export async function upload_annotations(data) {
     method: 'POST',
     body: JSON.stringify(data),
   };
-  console.log(data)
   let res = await fetch(`${base_url}/videos/${data.video_id}/annotations`, opts);
-  console.log(res);
+  return await res.json();
 }

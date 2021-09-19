@@ -27,7 +27,10 @@ export default function VideoLibrary() {
       setFile(event.target.files[0]);
       setUploading(true);
       upload_video(event.target.files[0])
-        .then(() => setUploading(false));
+        .then((data) => {
+          setUploading(false);
+          setVideos(data);
+        });
       console.log(event.target.files[0]);
   }
 
@@ -57,7 +60,8 @@ function Video(props) {
         <div className='thumbnail'><img src={props.thumbnail} alt="" /></div>
         <div className='videoInfo'>
           <h2>{props.name}</h2>
-          <p className='description'>{props.vidlen}</p>
+          {console.log(props.vidlen)}
+          <p className='description'>{`${Math.floor(props.vidlen / 60000)} Minutes | ${Math.floor((props.vidlen - 60000* Math.floor(props.vidlen / 60000)) / 1000)} Seconds | ${props.vidlen % 1000} Milliseconds`}</p>
         </div>
       </div>
     </Link>
