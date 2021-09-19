@@ -1,3 +1,7 @@
 .transcriptTxt {
   margin-left: 10px;
 }
+
+.transcript {
+  display: flex;
+}

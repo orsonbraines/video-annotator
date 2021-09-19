@@ -30,7 +30,8 @@ export default function Annotation(props) {
     <div className='annotation'>
       <span><button className="ts-btn" onClick={() => props.setSeekTime(props.annotation.ts / 1000.0)}>{`${String(Math.floor(props.annotation.ts / 60000)).padStart(2,'0')}:${String(Math.floor((props.annotation.ts - 60000 * Math.floor(props.annotation.ts / 60000)) / 1000)).padStart(2,'0')}`}</button></span>
      { isEditing ?
-          <input type='text' 
+          <textarea type='text' 
+                  className="annotationMsg"
                   onChange={(e) => {setEditedMsg(e.target.value);}} 
                   onBlur={() => setEditing(false)}
                   onKeyPress={(e) => {
@@ -38,7 +39,9 @@ export default function Annotation(props) {
                       editAnnotation();
                     }
                   }}
-                  value={editedMsg}/>
+                  value={editedMsg}
+                  cols={60}
+                  rows={Math.ceil(editedMsg.length / 60) + 1}/>
         : <span className="annotationMsg" 
                 onDoubleClick={() => {
                   setEditedMsg(props.annotation.msg);

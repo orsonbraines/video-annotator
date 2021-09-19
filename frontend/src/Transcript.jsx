@@ -19,15 +19,18 @@ export default function Transcript(props) {
     <div className='transcript' style={props.highlighted?{'backgroundColor':'yellow', 'padding': '1px 4px 1px 1px', 'borderRadius': '5px'} : {}}>
       <span><button className="ts-btn" onClick={() => props.setSeekTime(props.transcript.ts / 1000.0)}>{`${String(Math.floor(props.transcript.ts / 60000)).padStart(2,'0')}:${String(Math.floor((props.transcript.ts - 60000 * Math.floor(props.transcript.ts / 60000)) / 1000)).padStart(2,'0')}`}</button></span>
       {isEditing?
-        <input type='text' 
-        onChange={(e) => {setEditedTxt(e.target.value);}} 
-        onBlur={() => setEditing(false)}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            editTranscript();
-          }
-        }}
-        value={editedTxt}/>
+        <textarea  className="transcriptTxt"
+                    type='text' 
+                    onChange={(e) => {setEditedTxt(e.target.value);}} 
+                    onBlur={() => setEditing(false)}
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter") {
+                        editTranscript();
+                      }
+                    }}
+                    cols='40'
+                    rows={Math.ceil(editedTxt.length / 40)+1}
+                    value={editedTxt}/>
         : <span className="transcriptTxt"
                 onDoubleClick={() => {
                     setEditedTxt(props.transcript.txt);
